@@ -40,9 +40,10 @@ const MovieDetailPopup = ({ open, setOpen, movie }: MovieDetailPopupProps) => {
           <img
             className="backdrop-img"
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            onError={(e) => (e.currentTarget.src = "/placeholder.jpg")}
             alt={movie.title}
             width={600}
-            height={330}
+            height={300}
           />
           <div className="movie-card-container">
             <div className="movie-title-container">
