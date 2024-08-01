@@ -7,6 +7,7 @@ import useIntersectionObserver from "../utils/useIntersectionObserver";
 const MovieList = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const loadMoreRef = useRef(null);
@@ -17,6 +18,7 @@ const MovieList = () => {
 
   const getMovies = async () => {
     setLoading(true);
+    setIsError(false);
     try {
       const url = `${import.meta.env.VITE_API_BASE_URL}/upcoming?api_key=${
         import.meta.env.VITE_API_KEY
@@ -29,6 +31,7 @@ const MovieList = () => {
       setMovies((prevMovies) => [...prevMovies, ...newMovies]);
     } catch (error) {
       console.log(error);
+      setIsError(true);
     } finally {
       setLoading(false);
     }
@@ -43,6 +46,10 @@ const MovieList = () => {
     target: loadMoreRef,
     onIntersect: () => setPage((prev) => prev + 1),
   });
+
+  if (isError) {
+    return <div className="error">An error occurred</div>;
+  }
 
   return (
     <div className="movies-container">
