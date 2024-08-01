@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect } from "react";
 
 type intersectionObserverProps = {
-  enabled: boolean;
+  enabled?: boolean;
   onIntersect: () => void;
   root?: MutableRefObject<Element | null>;
   rootMargin?: string;
