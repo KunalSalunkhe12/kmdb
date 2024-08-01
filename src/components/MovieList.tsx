@@ -31,7 +31,7 @@ const MovieList = () => {
     useIntersectionObserver({
         target: loadMoreRef,
         onIntersect: ()=> setPage(prev=> prev + 1),
-        enabled: true,
+        enabled: movies.length > 0,
     });
 
     return (
