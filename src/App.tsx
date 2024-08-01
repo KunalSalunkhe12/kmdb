@@ -4,12 +4,14 @@ function App() {
 
   return (
     <>
-    <nav>
-      <span className='logo'>KMDB</span>
-    </nav>
-    <main>
-      <MovieList/>
-    </main>
+      <nav >
+        <div className='container'>
+          <span className='logo'>KMDB</span>
+        </div>
+      </nav>
+      <main className='container'>
+        <MovieList />
+      </main>
     </>
   )
 }
