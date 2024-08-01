@@ -67,12 +67,15 @@ const MovieList = () => {
         )}
       </div>
       <div className="movies-list">
-        <div className="movies-grid">
-          {filteredMovies &&
-            filteredMovies.map((movie) => (
+        {filteredMovies.length > 0 ? (
+          <div className="movies-grid">
+            {filteredMovies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}
-        </div>
+          </div>
+        ) : (
+          <div className="no-movies">No movies found</div>
+        )}
         <div ref={loadMoreRef}>
           {loading ? <div className="loader"></div> : ""}
         </div>
