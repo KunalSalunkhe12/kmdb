@@ -74,7 +74,7 @@ const MovieList = () => {
             ))}
           </div>
         ) : (
-          <div className="no-movies">No movies found</div>
+          !loading && <div className="no-movies">No movies found</div>
         )}
         <div ref={loadMoreRef}>
           {loading ? <div className="loader"></div> : ""}
