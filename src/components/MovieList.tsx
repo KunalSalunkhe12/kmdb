@@ -20,10 +20,13 @@ const MovieList = () => {
     setLoading(true);
     setIsError(false);
     try {
-      const url = `${import.meta.env.VITE_API_BASE_URL}/upcoming?api_key=${
-        import.meta.env.VITE_API_KEY
-      }&page=${page}`;
-      const res = await axios.get(url);
+      const url = `${import.meta.env.VITE_API_BASE_URL}/upcoming?page=${page}`;
+      const res = await axios.get(url, {
+        headers: {
+          "Content-Type": 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_API_ACCESS_TOKEN}`
+        }
+      });
       // Some pages had duplicate movies, so I filtered them out
       const newMovies = res.data.results.filter(
         (movie: Movie) => movies.findIndex((m) => m.id === movie.id) === -1
